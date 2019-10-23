@@ -10,8 +10,18 @@ const connect = function() {
   });
   // interpret incoming data as text
   conn.setEncoding('utf8'); 
+  conn.on('connect', () => {
+    console.log('Successfully connected to game server');
+  });
   
-  console.log('You\'re dead')
+  conn.on('connect', () => {
+    conn.write('Name: MCL');
+  });
+
+  conn.on('data', (data) => {
+    console.log(data);
+  });
+
   return conn;
 }
 
